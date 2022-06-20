@@ -6,12 +6,10 @@ import {got} from 'got'
 import OAuth  from 'oauth-1.0a'
 import twitter from 'twitter-api-v2'
 import crypto from 'crypto'
-import   './mongo.js'
-import './schemas/activitySchema.js'
 import { MongoClient } from "mongodb";
 
 const app = express();
-const port = 3000;
+const port = 80;
 const consumerKey = process.env.consumerKey
 const consumerSecret = process.env.consumerSecret
 const userId = process.env.userId
