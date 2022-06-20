@@ -9,7 +9,7 @@ import crypto from 'crypto'
 import { MongoClient } from "mongodb";
 
 const app = express();
-const port = 80;
+const port = 3000;
 const consumerKey = process.env.consumerKey
 const consumerSecret = process.env.consumerSecret
 const userId = process.env.userId
