@@ -1,4 +1,6 @@
 import express from 'express'
+import fs from 'fs'
+import https from 'https'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import 'crypto'
@@ -24,6 +26,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
+const options = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
+};
+  
 const oauth = OAuth({
     consumer: {
       key: consumerKey,
@@ -190,4 +197,7 @@ app.post('/', async (req, res) => {
     })
 });
 
-app.listen(port, () => console.log(`Mental Health Co app listening on port ${port}!`));
+https.createServer(options, app)
+  .listen(port, () => {
+    console.log(`Mental Health Co app listening on port ${port}!`);
+});
